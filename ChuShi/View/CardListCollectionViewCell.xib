@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="IeZ-IN-U9C" customClass="CardListCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="166" height="170"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="166" height="170"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VGl-FR-Lff">
+                        <rect key="frame" x="0.0" y="0.0" width="166" height="170"/>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hT-0R-cwb">
+                        <rect key="frame" x="143" y="0.0" width="23" height="23"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="23" id="EmG-Mb-jfV"/>
+                            <constraint firstAttribute="width" constant="23" id="FcH-20-DFr"/>
+                        </constraints>
+                        <state key="normal" image="icon_delete1"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXm-FB-oRj">
+                        <rect key="frame" x="0.0" y="-1" width="166" height="171"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="pXm-FB-oRj" firstAttribute="centerY" secondItem="IeZ-IN-U9C" secondAttribute="centerY" id="61D-Of-ddh"/>
+                <constraint firstItem="VGl-FR-Lff" firstAttribute="centerY" secondItem="IeZ-IN-U9C" secondAttribute="centerY" id="7lk-73-40g"/>
+                <constraint firstItem="pXm-FB-oRj" firstAttribute="centerX" secondItem="IeZ-IN-U9C" secondAttribute="centerX" id="BtS-lS-ZO0"/>
+                <constraint firstItem="VGl-FR-Lff" firstAttribute="centerX" secondItem="IeZ-IN-U9C" secondAttribute="centerX" id="GQ4-Ql-XEl"/>
+                <constraint firstItem="VGl-FR-Lff" firstAttribute="width" secondItem="IeZ-IN-U9C" secondAttribute="width" id="Nxu-aS-5Ja"/>
+                <constraint firstAttribute="trailing" secondItem="4hT-0R-cwb" secondAttribute="trailing" id="TOZ-Dn-s0o"/>
+                <constraint firstItem="pXm-FB-oRj" firstAttribute="width" secondItem="IeZ-IN-U9C" secondAttribute="width" id="cpP-YX-9E2"/>
+                <constraint firstItem="VGl-FR-Lff" firstAttribute="height" secondItem="IeZ-IN-U9C" secondAttribute="height" id="qnA-UH-JC0"/>
+                <constraint firstItem="pXm-FB-oRj" firstAttribute="height" secondItem="IeZ-IN-U9C" secondAttribute="height" id="rra-Mc-AcM"/>
+                <constraint firstItem="4hT-0R-cwb" firstAttribute="top" secondItem="IeZ-IN-U9C" secondAttribute="top" id="zgx-xr-cu4"/>
+            </constraints>
+            <size key="customSize" width="166" height="170"/>
+            <connections>
+                <outlet property="deleteButton" destination="4hT-0R-cwb" id="fWV-aV-5EF"/>
+                <outlet property="imageView" destination="VGl-FR-Lff" id="l6H-yX-x6C"/>
+                <outlet property="textLabel" destination="pXm-FB-oRj" id="kgT-1C-YJE"/>
+            </connections>
+            <point key="canvasLocation" x="586" y="396"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="icon_delete1" width="23" height="23"/>
+    </resources>
+</document>
