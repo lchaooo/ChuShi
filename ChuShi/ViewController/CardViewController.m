@@ -246,7 +246,11 @@ typedef NS_ENUM(NSUInteger, SaveButtonType) {
         [self chooseImage];
     }];
     
-    [self.cardCollectionView registerNib:[UINib nibWithNibName:@"CardCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cardCell"];
+    if (IS_IPHONE_5) {
+        [self.cardCollectionView registerNib:[UINib nibWithNibName:@"CardCollectionViewCell_5s" bundle:nil] forCellWithReuseIdentifier:@"cardCell"];
+    } else {
+        [self.cardCollectionView registerNib:[UINib nibWithNibName:@"CardCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cardCell"];
+    }
     CardLayout *layout = [[CardLayout alloc] init];
     self.cardCollectionView.collectionViewLayout = layout;
     

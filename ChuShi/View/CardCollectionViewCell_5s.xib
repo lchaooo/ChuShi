@@ -1,15 +1,127 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-        </view>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="KGL-jd-GaI" customClass="CardCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F94-Es-HQi">
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="667"/>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
+                    </scrollView>
+                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pgc-9D-2iF">
+                        <rect key="frame" x="45" y="482" width="285" height="167"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xbJ-XR-mHj">
+                            <rect key="frame" x="0.0" y="0.0" width="285" height="167"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mén" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xd-hc-0QC">
+                                    <rect key="frame" x="122" y="32" width="42" height="26"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="门" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6u-pB-N0k">
+                                    <rect key="frame" x="125" y="67" width="36" height="43"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_voice" translatesAutoresizingMaskIntoConstraints="NO" id="o6D-wH-T8O">
+                                    <rect key="frame" x="185" y="36" width="22" height="18"/>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="22" id="UBu-ZM-XtQ"/>
+                                        <constraint firstAttribute="height" constant="18" id="mKF-bd-tTA"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_voice" translatesAutoresizingMaskIntoConstraints="NO" id="Bgu-ag-kiO">
+                                    <rect key="frame" x="196" y="123" width="22" height="18"/>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="18" id="Tba-Tj-zax"/>
+                                        <constraint firstAttribute="width" constant="22" id="Vfw-wQ-ZMN"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="the door" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ada-7w-lwI">
+                                    <rect key="frame" x="110" y="121" width="65" height="21"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <animations/>
+                            <constraints>
+                                <constraint firstItem="o6D-wH-T8O" firstAttribute="leading" secondItem="3xd-hc-0QC" secondAttribute="trailing" constant="21" id="24k-Pz-mSv"/>
+                                <constraint firstItem="o6D-wH-T8O" firstAttribute="centerY" secondItem="3xd-hc-0QC" secondAttribute="centerY" id="QC6-9G-n4A"/>
+                                <constraint firstItem="Bgu-ag-kiO" firstAttribute="centerY" secondItem="ada-7w-lwI" secondAttribute="centerY" id="WvM-qr-NMv"/>
+                                <constraint firstItem="3xd-hc-0QC" firstAttribute="top" secondItem="xbJ-XR-mHj" secondAttribute="top" constant="32" id="Yzp-Yt-LRl"/>
+                                <constraint firstItem="ada-7w-lwI" firstAttribute="top" secondItem="xbJ-XR-mHj" secondAttribute="top" constant="121" id="a7U-XO-Qjj"/>
+                                <constraint firstItem="3xd-hc-0QC" firstAttribute="centerX" secondItem="xbJ-XR-mHj" secondAttribute="centerX" id="b60-E8-ZPd"/>
+                                <constraint firstItem="Bgu-ag-kiO" firstAttribute="leading" secondItem="ada-7w-lwI" secondAttribute="trailing" constant="21" id="cLr-ue-svC"/>
+                                <constraint firstItem="H6u-pB-N0k" firstAttribute="top" secondItem="xbJ-XR-mHj" secondAttribute="top" constant="67" id="gzz-ZI-vuH"/>
+                                <constraint firstItem="H6u-pB-N0k" firstAttribute="centerX" secondItem="xbJ-XR-mHj" secondAttribute="centerX" id="h5A-D1-XDD"/>
+                                <constraint firstItem="ada-7w-lwI" firstAttribute="centerX" secondItem="xbJ-XR-mHj" secondAttribute="centerX" id="rqj-or-baB"/>
+                            </constraints>
+                        </view>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="167" id="BM7-vd-K6n"/>
+                        </constraints>
+                        <blurEffect style="light"/>
+                    </visualEffectView>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <animations/>
+            <constraints>
+                <constraint firstItem="Pgc-9D-2iF" firstAttribute="leading" secondItem="KGL-jd-GaI" secondAttribute="leading" constant="45" id="6wV-aU-HnN"/>
+                <constraint firstItem="F94-Es-HQi" firstAttribute="centerX" secondItem="KGL-jd-GaI" secondAttribute="centerX" id="CE1-8c-rvp"/>
+                <constraint firstItem="F94-Es-HQi" firstAttribute="height" secondItem="KGL-jd-GaI" secondAttribute="height" id="OGE-hy-p24"/>
+                <constraint firstItem="F94-Es-HQi" firstAttribute="leading" secondItem="KGL-jd-GaI" secondAttribute="leading" id="QUa-ZG-nZJ"/>
+                <constraint firstItem="F94-Es-HQi" firstAttribute="width" secondItem="KGL-jd-GaI" secondAttribute="width" id="aL9-xW-IXN"/>
+                <constraint firstAttribute="trailing" secondItem="Pgc-9D-2iF" secondAttribute="trailing" constant="45" id="eUM-E2-SFu"/>
+                <constraint firstAttribute="bottom" secondItem="Pgc-9D-2iF" secondAttribute="bottom" constant="19" id="egZ-by-5zE"/>
+                <constraint firstItem="F94-Es-HQi" firstAttribute="centerY" secondItem="KGL-jd-GaI" secondAttribute="centerY" id="fe2-JT-TaU"/>
+                <constraint firstItem="F94-Es-HQi" firstAttribute="top" secondItem="KGL-jd-GaI" secondAttribute="top" id="k6b-rZ-Tv1"/>
+                <constraint firstItem="Pgc-9D-2iF" firstAttribute="top" secondItem="KGL-jd-GaI" secondAttribute="top" constant="26" id="wYf-f8-aAI"/>
+            </constraints>
+            <size key="customSize" width="451" height="529"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="aL9-xW-IXN"/>
+                    <exclude reference="OGE-hy-p24"/>
+                    <exclude reference="wYf-f8-aAI"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="chineseLabel" destination="H6u-pB-N0k" id="elp-0F-QEL"/>
+                <outlet property="chinesePlay" destination="o6D-wH-T8O" id="4Bw-ZN-dgf"/>
+                <outlet property="englishLabel" destination="ada-7w-lwI" id="93j-b9-Mja"/>
+                <outlet property="englishPlay" destination="Bgu-ag-kiO" id="PVd-jy-6tM"/>
+                <outlet property="imageScrollView" destination="F94-Es-HQi" id="f5X-on-Dik"/>
+                <outlet property="pinyinLabel" destination="3xd-hc-0QC" id="6T1-o4-0jx"/>
+                <outlet property="visualEffectView" destination="Pgc-9D-2iF" id="gLU-CS-sNX"/>
+            </connections>
+            <point key="canvasLocation" x="196.5" y="177.5"/>
+        </collectionViewCell>
     </objects>
+    <resources>
+        <image name="icon_voice" width="26" height="20"/>
+    </resources>
 </document>

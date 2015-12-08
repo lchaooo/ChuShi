@@ -34,8 +34,23 @@
     [IFlySpeechUtility createUtility:initString];
     [SVProgressHUD setBackgroundColor:UIColorFromRGBA(253, 164, 160, 0.3)];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
-
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = [[self grabStoryboard] instantiateInitialViewController];
+    [self.window makeKeyAndVisible];
     return YES;
 }
+
+- (UIStoryboard *)grabStoryboard {
+    
+    UIStoryboard *storyboard;
+    if (IS_IPHONE_5) {
+        storyboard = [UIStoryboard storyboardWithName:@"Main_5s" bundle:nil];
+    } else {
+        storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    }
+    return storyboard;
+}
+
 
 @end

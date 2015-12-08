@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9D11ACB41C16A327009ADAAD /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D11ACB31C16A327009ADAAD /* UIImage+fixOrientation.m */; };
 		9D1E58F41C16E6E100516264 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D1E58F31C16E6E100516264 /* Media.xcassets */; };
+		9D1E58F61C17114700516264 /* Main_5s.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D1E58F51C17114700516264 /* Main_5s.storyboard */; };
+		9D1E58F81C171AD000516264 /* CardCollectionViewCell_5s.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D1E58F71C171AD000516264 /* CardCollectionViewCell_5s.xib */; };
 		9D25890D1C1591BF00EA20B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D25890C1C1591BF00EA20B2 /* main.m */; };
 		9D25891B1C1591BF00EA20B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D2589191C1591BF00EA20B2 /* LaunchScreen.storyboard */; };
 		9D2589261C1591BF00EA20B2 /* ChuShiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2589251C1591BF00EA20B2 /* ChuShiTests.m */; };
@@ -92,6 +94,8 @@
 		9D11ACB21C16A327009ADAAD /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
 		9D11ACB31C16A327009ADAAD /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
 		9D1E58F31C16E6E100516264 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		9D1E58F51C17114700516264 /* Main_5s.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_5s.storyboard; sourceTree = "<group>"; };
+		9D1E58F71C171AD000516264 /* CardCollectionViewCell_5s.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardCollectionViewCell_5s.xib; sourceTree = "<group>"; };
 		9D2589081C1591BF00EA20B2 /* 初识.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "初识.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D25890C1C1591BF00EA20B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9D25891A1C1591BF00EA20B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -264,6 +268,7 @@
 				9D25896D1C159A2D00EA20B2 /* AppDelegate.h */,
 				9D25896E1C159A2D00EA20B2 /* AppDelegate.m */,
 				9D25897D1C159B6A00EA20B2 /* Main.storyboard */,
+				9D1E58F51C17114700516264 /* Main_5s.storyboard */,
 				9D2589661C1599DB00EA20B2 /* Info.plist */,
 				9D2589671C1599DB00EA20B2 /* Assets.xcassets */,
 				9D1E58F31C16E6E100516264 /* Media.xcassets */,
@@ -472,6 +477,7 @@
 				9D2589A31C159B9700EA20B2 /* CardCollectionViewCell.h */,
 				9D2589A41C159B9700EA20B2 /* CardCollectionViewCell.m */,
 				9D2589A21C159B9700EA20B2 /* CardCollectionViewCell.xib */,
+				9D1E58F71C171AD000516264 /* CardCollectionViewCell_5s.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -620,9 +626,11 @@
 				9D25897F1C159B6A00EA20B2 /* Main.storyboard in Resources */,
 				9D1E58F41C16E6E100516264 /* Media.xcassets in Resources */,
 				9D25891B1C1591BF00EA20B2 /* LaunchScreen.storyboard in Resources */,
+				9D1E58F61C17114700516264 /* Main_5s.storyboard in Resources */,
 				9D25896B1C1599DB00EA20B2 /* Assets.xcassets in Resources */,
 				9D2589AB1C159B9700EA20B2 /* CardCollectionViewCell.xib in Resources */,
 				9D2589AE1C159B9700EA20B2 /* CardListCollectionViewCell.xib in Resources */,
+				9D1E58F81C171AD000516264 /* CardCollectionViewCell_5s.xib in Resources */,
 				9D2589B01C159B9700EA20B2 /* MainCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

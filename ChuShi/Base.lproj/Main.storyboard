@@ -127,11 +127,11 @@
                         <viewControllerLayoutGuide type="bottom" id="hDt-8c-yLQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ibs-E4-3ee">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aj5-fC-5TN">
-                                <rect key="frame" x="19" y="136" width="562" height="396"/>
+                                <rect key="frame" x="19" y="72" width="562" height="396"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="O09-xY-ixm">
@@ -159,7 +159,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYa-fp-0p0">
-                                <rect key="frame" x="247" y="547" width="106" height="53"/>
+                                <rect key="frame" x="247" y="483" width="106" height="53"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="2wq-TL-lMH"/>
@@ -179,6 +179,7 @@
                             <constraint firstItem="hDt-8c-yLQ" firstAttribute="top" secondItem="aj5-fC-5TN" secondAttribute="bottom" constant="68" id="beH-sI-Jjb"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="VsN-Oi-BRk"/>
                     <connections>
                         <outlet property="choosePhotoButton" destination="pYa-fp-0p0" id="6sF-fW-Bdu"/>
