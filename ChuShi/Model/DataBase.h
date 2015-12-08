@@ -12,8 +12,6 @@
 
 @interface DataBase : NSObject
 
-@property (nonatomic, assign) int identifier;
-
 /**
  *  返回单例
  *

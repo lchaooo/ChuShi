@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9D2589071C1591BF00EA20B2"
-               BuildableName = "ChuShi.app"
+               BuildableName = "&#x521d;&#x8bc6;.app"
                BlueprintName = "ChuShi"
                ReferencedContainer = "container:ChuShi.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9D2589071C1591BF00EA20B2"
-            BuildableName = "ChuShi.app"
+            BuildableName = "&#x521d;&#x8bc6;.app"
             BlueprintName = "ChuShi"
             ReferencedContainer = "container:ChuShi.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9D2589071C1591BF00EA20B2"
-            BuildableName = "ChuShi.app"
+            BuildableName = "&#x521d;&#x8bc6;.app"
             BlueprintName = "ChuShi"
             ReferencedContainer = "container:ChuShi.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9D2589071C1591BF00EA20B2"
-            BuildableName = "ChuShi.app"
+            BuildableName = "&#x521d;&#x8bc6;.app"
             BlueprintName = "ChuShi"
             ReferencedContainer = "container:ChuShi.xcodeproj">
          </BuildableReference>

@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QI7-no-r7q">
-                        <rect key="frame" x="-1" y="-1" width="376" height="669"/>
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="667"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
@@ -94,7 +94,9 @@
                 <constraint firstAttribute="trailing" secondItem="KUY-Zr-9H2" secondAttribute="trailing" constant="54" id="Av1-xL-0It"/>
                 <constraint firstItem="KUY-Zr-9H2" firstAttribute="top" secondItem="Eas-fz-uJb" secondAttribute="top" constant="26" id="IOx-bE-kYG"/>
                 <constraint firstItem="QI7-no-r7q" firstAttribute="centerX" secondItem="Eas-fz-uJb" secondAttribute="centerX" id="Pd9-LU-pnp"/>
+                <constraint firstItem="QI7-no-r7q" firstAttribute="top" secondItem="Eas-fz-uJb" secondAttribute="top" id="Wuc-EZ-n5E"/>
                 <constraint firstItem="QI7-no-r7q" firstAttribute="width" secondItem="Eas-fz-uJb" secondAttribute="width" id="Yke-zq-2Cv"/>
+                <constraint firstItem="QI7-no-r7q" firstAttribute="leading" secondItem="Eas-fz-uJb" secondAttribute="leading" id="Yti-3g-NrX"/>
                 <constraint firstAttribute="bottom" secondItem="KUY-Zr-9H2" secondAttribute="bottom" constant="26" id="Z6v-I0-xo6"/>
                 <constraint firstItem="KUY-Zr-9H2" firstAttribute="leading" secondItem="Eas-fz-uJb" secondAttribute="leading" constant="54" id="l3j-bU-6hm"/>
                 <constraint firstItem="QI7-no-r7q" firstAttribute="height" secondItem="Eas-fz-uJb" secondAttribute="height" id="nut-LJ-CJV"/>
@@ -102,6 +104,8 @@
             <size key="customSize" width="451" height="529"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="Yke-zq-2Cv"/>
+                    <exclude reference="nut-LJ-CJV"/>
                     <exclude reference="IOx-bE-kYG"/>
                 </mask>
             </variation>

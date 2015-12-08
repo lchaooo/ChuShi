@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface PickImageViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
+@interface PickImageViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UIImage *originalImage;
 

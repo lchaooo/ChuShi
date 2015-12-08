@@ -14,11 +14,15 @@
 {
     self = [super init];
     if (self) {
-        self.itemSize = CGSizeMake(100, 100);
+//        if (IS_IPHONE_5) {
+//            self.itemSize
+//        } else {
+            self.itemSize = CGSizeMake(100, 100);
+            self.minimumLineSpacing = 32;
+            self.minimumInteritemSpacing = 18;
+  //      }
         self.scrollDirection = UICollectionViewScrollDirectionVertical;
         //  每个item在水平方向的最小间距
-        self.minimumLineSpacing = 32;
-        self.minimumInteritemSpacing = 18;
         
     }
     return self;

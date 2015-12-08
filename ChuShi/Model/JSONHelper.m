@@ -37,6 +37,7 @@
         card.chinese = dic[@"chinese"];
         card.english = dic[@"english"];
         card.imageCounts = [dic[@"imageCount"] integerValue];
+        card.identifier = 0;
         NSMutableArray *imageArray = [NSMutableArray array];
         for (int i = 1; i <= card.imageCounts; i++) {
             UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_%d",card.english, i]];

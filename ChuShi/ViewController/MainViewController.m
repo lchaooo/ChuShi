@@ -30,7 +30,6 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBarHidden = YES;
-    
     [self.choosePhotoButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
         [self chooseImage];
     }];
@@ -59,16 +58,26 @@
         card.images = [NSArray arrayWithObjects:self.originalImage, nil];
         card.imageCounts = 1;
         [YTOperations identifyImage:[UIImage cutImage:self.originalImage size:CGSizeMake(200, 200)] ok:^(NSArray *array, NSError *error) {
-            if (array.count > 0) {
-                card.chinese = [(YTTagModel *)[array firstObject] tag_name];
-                [NetworkManager translate2English:card.chinese ok:^(NSString *english, NSError *error) {
-                    card.english = english;
-                    [SVProgressHUD dismiss];
-                    self.view.userInteractionEnabled = YES;
-                    [self.navigationController pushViewController:cv animated:YES];
-                    [cv setCardArray:[NSArray arrayWithObjects:card, nil]];
-                    cv.status = CardViewStatusCustom;
-                }];
+            if (error) {
+                [SVProgressHUD showErrorWithStatus:@"网络连接有问题"];
+                [self performSelector:@selector(dismissProcessHud) withObject:nil afterDelay:1.5];
+            } else {
+                if (array.count > 0) {
+                    card.chinese = [(YTTagModel *)[array firstObject] tag_name];
+                    [NetworkManager translate2English:card.chinese ok:^(NSString *english, NSError *error) {
+                        if (error) {
+                            [SVProgressHUD showErrorWithStatus:@"网络连接有问题"];
+                            [self performSelector:@selector(dismissProcessHud) withObject:nil afterDelay:1.5];
+                        } else {
+                            card.english = english;
+                            self.view.userInteractionEnabled = YES;
+                            [self dismissProcessHud];
+                            [self.navigationController pushViewController:cv animated:YES];
+                            [cv setCardArray:[NSArray arrayWithObjects:card, nil]];
+                            cv.status = CardViewStatusCustom;
+                        }
+                    }];
+                }
             }
         }];
     }
@@ -89,16 +98,23 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row != 1 && indexPath.row != 2) {
+    if (![[self.identifierArray objectAtIndex:indexPath.row] isEqualToString:@""]) {
         self.indexPath = indexPath;
         [self.mainCollectionView deselectItemAtIndexPath:indexPath animated:YES];
         [self performSegueWithIdentifier:@"main2list" sender:nil];
     }
 }
 
+#pragma mark custom method 
+- (void)dismissProcessHud {
+    [SVProgressHUD dismiss];
+    self.view.userInteractionEnabled = YES;
+}
+
 #pragma mark getters and setters 
 - (NSArray *)identifierArray {
     return @[@"mine", @"", @"", @"animal", @"traffic", @"music", @"jiaju", @"vegetable", @"fruit"];
+    
 }
 
 @end

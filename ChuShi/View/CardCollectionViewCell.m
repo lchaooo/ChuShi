@@ -28,15 +28,13 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self setUpSubviews];
+    self.lastContentOffset = CGPointMake(0, 0);
 }
 
 #pragma mark UIScrollViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (fabs(scrollView.contentOffset.y - self.lastContentOffset.y) > fabs(scrollView.contentOffset.x - self.lastContentOffset.x)) {
-        NSLog(@"上下滑动");
+    if (fabs(scrollView.contentOffset.y - self.lastContentOffset.y) / fabs(scrollView.contentOffset.x - self.lastContentOffset.x) > 1) {
         [self.delegate imageBrowserDidScroll:self];
-    } else {
-        NSLog(@"左右滑动");
     }
     self.lastContentOffset = scrollView.contentOffset;
     [NSObject cancelPreviousPerformRequestsWithTarget:self];

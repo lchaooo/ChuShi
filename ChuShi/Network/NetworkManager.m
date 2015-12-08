@@ -42,8 +42,8 @@ static NSString *__access_token = nil;
     if (!word) {
         return nil;
     }
-    
-    NSURL *url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@?keyfrom=%@&key=%@&type=data&doctype=json&version=1.1&q=%@", YoudaoTranslateAPI, YoudaoKeyFrom, YoudaoAPIKey, word] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
+    NSURL *url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@?keyfrom=%@&key=%@&type=data&doctype=json&version=1.1&q=%@", YoudaoTranslateAPI, YoudaoKeyFrom, YoudaoAPIKey, word] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
     NSURLSessionDataTask *task = [[self sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSString *english = nil;
         if (data) {

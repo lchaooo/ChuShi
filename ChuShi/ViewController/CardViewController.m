@@ -14,12 +14,19 @@
 #import "CardLayout.h"
 #import "CardListViewController.h"
 #import <iflyMSC/IFlySpeechSynthesizerDelegate.h>
+#import <iflyMSC/IFlySpeechError.h>
+#import <iflyMSC/IFlySpeechConstant.h>
 #import "NetworkManager.h"
 #import "YTOperations.h"
 #import "UIImage+Resize.h"
 #import "YTTagModel.h"
 
 #define IS_CH_SYMBOL(chr) ((int)(chr)>127)
+
+typedef NS_ENUM(NSUInteger, SaveButtonType) {
+    SaveButtonTypeDidSave = 0,
+    SaveButtonTypeNotSave,
+};
 
 @interface CardViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, CardCollectionViewCellDelegate, IFlySpeechSynthesizerDelegate, UIScrollViewDelegate>
 
@@ -31,8 +38,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *refreshButton;
 @property (nonatomic, strong) NSMutableArray *indexArray;
-@property (nonatomic, strong) NSMutableArray *lastArray;
 @property (nonatomic, assign) NSUInteger indexToDelete;
+@property (nonatomic, assign) SaveButtonType buttonType;
 
 @end
 
@@ -42,30 +49,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpSubviews];
-    
-    self.indexArray = [NSMutableArray array];
-    for (int i = 0; i < self.cardArray.count; i++) {
-        [self.indexArray addObject:@0];
-    }
-    
-    if (self.status == CardViewStatusNormal) {
-        self.saveButton.hidden = YES;
-        self.editButton.hidden = YES;
-        self.refreshButton.hidden = YES;
-    } else if (self.status == CardViewStatusCustom) {
-        self.saveButton.hidden = NO;
-        self.editButton.hidden = NO;
-        self.refreshButton.hidden = NO;
-    }
     [[VoiceHelper sharedInstance] setSpeechSynthesizerDelegate:self];
 }
-
 
 #pragma mark UICollectionView Delegate and Data Source
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section;
 {
     return self.cardArray.count;
 }
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
     CardCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"cardCell" forIndexPath:indexPath];
@@ -74,13 +66,12 @@
     return cell;
 }
 
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSLog(@"嘿嘿嘿");
     for (CardCollectionViewCell *cell in self.cardCollectionView.visibleCells) {
         cell.imageScrollView.scrollEnabled = NO;
     }
@@ -95,17 +86,19 @@
         cell.imageScrollView.scrollEnabled = YES;
     }
     if (self.status == CardViewStatusEdit) {
-        [self.saveButton setImage:[UIImage imageNamed:@"icon_addcard"] forState:UIControlStateNormal];
-        self.saveButton.userInteractionEnabled = NO;
+        self.buttonType = SaveButtonTypeDidSave;
         self.cardArray = [[DataBase sharedInstance] selectAllDataFromTable:@"mine"];
-        self.lastArray = [self.cardArray copy];
         [self.cardCollectionView reloadData];
     }
 }
 
 #pragma mark IFlySpeechSynthesizerDelegate
 //结束代理
-- (void) onCompleted:(IFlySpeechError *) error {
+- (void) onCompleted:(IFlySpeechError *)error {
+    if (![[error errorDesc] isEqualToString:@"服务正常"]) {
+        [SVProgressHUD showErrorWithStatus:@"网络连接有问题"];
+        [self performSelector:@selector(dismissProcessHud) withObject:nil afterDelay:1.5];
+    }
     [self.playButton stopAnimating];
     self.cardCollectionView.userInteractionEnabled = YES;
 }
@@ -135,9 +128,46 @@
     self.cardCollectionView.scrollEnabled = NO;
 }
 
+#pragma override
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    [super imagePickerController:picker didFinishPickingMediaWithInfo:info];
+    if (self.originalImage) {
+        [SVProgressHUD show];
+        self.view.userInteractionEnabled = NO;
+        Card *oldCard = [self.cardArray objectAtIndex:self.indexToDelete];
+        __block Card *card = [[Card alloc] init];
+        card.images = [NSArray arrayWithObjects:self.originalImage, nil];
+        card.imageCounts = 1;
+        [YTOperations identifyImage:[UIImage cutImage:self.originalImage size:CGSizeMake(200, 200)] ok:^(NSArray *array, NSError *error) {
+            if (array.count > 0) {
+                card.chinese = [(YTTagModel *)[array firstObject] tag_name];
+                [NetworkManager translate2English:card.chinese ok:^(NSString *english, NSError *error) {
+                    if (error) {
+                        [SVProgressHUD showErrorWithStatus:@"网络连接有问题"];
+                        [self performSelector:@selector(dismissProcessHud) withObject:nil afterDelay:1.5];
+                    } else {
+                        card.english = english;
+                        NSMutableArray *array = [self.cardArray mutableCopy];
+                        [array replaceObjectAtIndex:self.indexToDelete withObject:card];
+                        self.cardArray = array;
+                        if (self.status == CardViewStatusEdit) {
+                            card.identifier = oldCard.identifier;
+                            [[DataBase sharedInstance] deleteDataFromTable:@"mine" card:oldCard];
+                            [[DataBase sharedInstance] insertDataIntoTable:@"mine" card:card];
+                        }
+                        [self.cardCollectionView reloadData];
+                        [self dismissProcessHud];
+                    }
+                }];
+            }
+        }];
+    }
+}
+
 #pragma mark custom method
 - (void)setUpSubviews {
     self.navigationController.navigationBar.hidden = YES;
+    self.cardCollectionView.scrollEnabled = YES;
     
     [self.backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
         [self.navigationController popViewControllerAnimated:YES];
@@ -147,7 +177,7 @@
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"卡片有误？编辑您的卡片" preferredStyle:UIAlertControllerStyleAlert];
         [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
             textField.placeholder = @"请输入中文";
-            textField.text = [(Card *)[self.cardArray objectAtIndex:0] chinese];
+            textField.text = [(Card *)[self.cardArray objectAtIndex:self.indexToDelete] chinese];
         }];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSMutableArray *textArray = [NSMutableArray array];
@@ -163,7 +193,8 @@
             if (!isNotChinese && [(NSString *)textArray[0] length] != 0) {
                 __block Card *card = [[Card alloc] init];
                 Card *oldCard = [self.cardArray objectAtIndex:self.indexToDelete];
-                card = [oldCard copy];
+                card = [[Card alloc] init];
+                card.imageCounts = oldCard.imageCounts;
                 card.chinese = textArray[0];
                 NSMutableArray *imageArray = [NSMutableArray array];
                 for (UIImage *image in oldCard.images) {
@@ -172,16 +203,22 @@
                 card.images = imageArray;
                 [SVProgressHUD show];
                 [NetworkManager translate2English:textArray[0] ok:^(NSString *english, NSError *error) {
-                    card.english = english;
-                    card.identifier = [[DataBase sharedInstance] identifier];
-                    self.lastArray = [self.cardArray mutableCopy];
-                    NSMutableArray *array = [self.cardArray mutableCopy];
-                    [array replaceObjectAtIndex:self.indexToDelete withObject:card];
-                    self.cardArray = array;
-                    [self.cardCollectionView reloadData];
-                    [SVProgressHUD dismiss];
-                    [self.saveButton setImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
-                    self.saveButton.userInteractionEnabled = YES;
+                    if (error) {
+                        [SVProgressHUD showErrorWithStatus:@"网络连接有问题"];
+                        [self performSelector:@selector(dismissProcessHud) withObject:nil afterDelay:1.5];
+                    } else {
+                        card.english = english;
+                        NSMutableArray *array = [self.cardArray mutableCopy];
+                        [array replaceObjectAtIndex:self.indexToDelete withObject:card];
+                        self.cardArray = array;
+                        if (self.status == CardViewStatusEdit) {
+                            card.identifier = oldCard.identifier;
+                            [[DataBase sharedInstance] deleteDataFromTable:@"mine" card:oldCard];
+                            [[DataBase sharedInstance] insertDataIntoTable:@"mine" card:card];
+                        }
+                        [self.cardCollectionView reloadData];
+                        [self dismissProcessHud];
+                    }
                 }];
             } else {
                 [SVProgressHUD showErrorWithStatus:@"输入有误"];
@@ -195,15 +232,14 @@
         [self presentViewController:alertController animated:YES completion:nil];
     }];
     
-    if (self.status == CardViewStatusCustom) {
-        self.saveButton.userInteractionEnabled = YES;
-        [self.saveButton setImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
-    } else if (self.status == CardViewStatusEdit) {
-        self.saveButton.userInteractionEnabled = NO;
-        [self.saveButton setImage:[UIImage imageNamed:@"icon_addcard"] forState:UIControlStateNormal];
-    }
     [self.saveButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
-        [self refreshWithIndex:self.indexToDelete];
+        if (self.buttonType == SaveButtonTypeDidSave) {
+            [[DataBase sharedInstance] deleteDataFromTable:@"mine" card:[self.cardArray objectAtIndex:self.indexToDelete]];
+            self.buttonType = SaveButtonTypeNotSave;
+        } else if (self.buttonType == SaveButtonTypeNotSave) {
+            [[DataBase sharedInstance] insertDataIntoTable:@"mine" card:[self.cardArray objectAtIndex:self.indexToDelete]];
+            self.buttonType = SaveButtonTypeDidSave;
+        }
     }];
     
     [self.refreshButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
@@ -213,48 +249,32 @@
     [self.cardCollectionView registerNib:[UINib nibWithNibName:@"CardCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cardCell"];
     CardLayout *layout = [[CardLayout alloc] init];
     self.cardCollectionView.collectionViewLayout = layout;
+    
+    self.indexArray = [NSMutableArray array];
+    for (int i = 0; i < self.cardArray.count; i++) {
+        [self.indexArray addObject:@0];
+    }
+    
+    if (self.status == CardViewStatusNormal) {
+        self.saveButton.hidden = YES;
+        self.editButton.hidden = YES;
+        self.refreshButton.hidden = YES;
+    } else if (self.status == CardViewStatusCustom) {
+        self.saveButton.hidden = NO;
+        self.editButton.hidden = NO;
+        self.refreshButton.hidden = NO;
+        self.buttonType = SaveButtonTypeNotSave;
+    } else if (self.status == CardViewStatusEdit) {
+        self.saveButton.hidden = NO;
+        self.editButton.hidden = NO;
+        self.refreshButton.hidden = NO;
+        self.buttonType = SaveButtonTypeDidSave;
+    }
 }
 
 - (void)dismissProcessHud {
     [SVProgressHUD dismiss];
-}
-
-#pragma override
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-    [super imagePickerController:picker didFinishPickingMediaWithInfo:info];
-    if (self.originalImage) {
-        [SVProgressHUD show];
-        self.view.userInteractionEnabled = NO;
-        __block Card *card = [[Card alloc] init];
-        card.images = [NSArray arrayWithObjects:self.originalImage, nil];
-        card.imageCounts = 1;
-        [YTOperations identifyImage:[UIImage cutImage:self.originalImage size:CGSizeMake(200, 200)] ok:^(NSArray *array, NSError *error) {
-            if (array.count > 0) {
-                card.chinese = [(YTTagModel *)[array firstObject] tag_name];
-                [NetworkManager translate2English:card.chinese ok:^(NSString *english, NSError *error) {
-                    card.english = english;
-                    self.lastArray = [self.cardArray mutableCopy];
-                    NSMutableArray *array = [self.cardArray mutableCopy];
-                    [array replaceObjectAtIndex:self.indexToDelete withObject:card];
-                    self.cardArray = array;
-                    [self.cardCollectionView reloadData];
-                    [SVProgressHUD dismiss];
-                    self.view.userInteractionEnabled = YES;
-                    self.saveButton.userInteractionEnabled = YES;
-                    [self.saveButton setImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
-                }];
-            }
-        }];
-    }
-}
-
-- (void)refreshWithIndex:(NSUInteger)index {
-    Card *cardToDelete = [self.lastArray objectAtIndex:index];
-    [[DataBase sharedInstance] deleteDataFromTable:@"mine" card:cardToDelete];
-    Card *cardToInsert = [self.cardArray objectAtIndex:index];
-    [[DataBase sharedInstance] insertDataIntoTable:@"mine" card:cardToInsert];
-    [self.saveButton setImage:[UIImage imageNamed:@"icon_addcard"] forState:UIControlStateNormal];
-    self.saveButton.userInteractionEnabled = NO;
+    self.view.userInteractionEnabled = YES;
 }
 
 #pragma mark getters and setters
@@ -269,6 +289,15 @@
     CardCollectionViewCell *cell = [[self.cardCollectionView visibleCells] objectAtIndex:0];
     _indexToDelete = [self.cardCollectionView indexPathForCell:cell].row;
     return _indexToDelete;
+}
+
+- (void)setButtonType:(SaveButtonType)buttonType {
+    _buttonType = buttonType;
+    if (buttonType == SaveButtonTypeDidSave) {
+        [self.saveButton setImage:[UIImage imageNamed:@"icon_addcard"] forState:UIControlStateNormal];
+    } else if (buttonType == SaveButtonTypeNotSave) {
+        [self.saveButton setImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
+    }
 }
 
 @end

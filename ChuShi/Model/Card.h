@@ -15,8 +15,9 @@
 @property (nonatomic, strong) NSString *pinyin;
 @property (nonatomic, strong) NSString *english;
 @property (nonatomic, strong) NSArray *images;
-@property (nonatomic, assign) int identifier;
+@property (nonatomic, assign) NSInteger identifier;
 
+- (instancetype)init;
 - (id)copyWithZone:(NSZone *)zone;
 - (NSString *)description;
 

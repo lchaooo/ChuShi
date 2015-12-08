@@ -38,14 +38,6 @@
     [self.cardListCollectionView reloadData];
 }
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([segue.identifier isEqualToString:@"list2detail"]) {
-//        CardViewController *vc = [segue destinationViewController];
-//        vc.status = CardViewStatusNormal;
-//        [vc setCardArray:self.cardArray];
-//    }
-//}
-
 #pragma mark UICollectionView Delegate and Data Source
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section;
 {
@@ -151,8 +143,10 @@
     _status = status;
     if (status == CardListCellStatusNormal) {
         _cellStatus = CardListCellStatusNormal;
+        self.cardListCollectionView.allowsSelection = YES;
     } else if (status == CardListCollectionViewStatusEdit) {
         _cellStatus = CardListCellStatusEdit;
+        self.cardListCollectionView.allowsSelection = NO;
     }
 }
 

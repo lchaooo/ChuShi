@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D11ACB41C16A327009ADAAD /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D11ACB31C16A327009ADAAD /* UIImage+fixOrientation.m */; };
+		9D1E58F41C16E6E100516264 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D1E58F31C16E6E100516264 /* Media.xcassets */; };
 		9D25890D1C1591BF00EA20B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D25890C1C1591BF00EA20B2 /* main.m */; };
 		9D25891B1C1591BF00EA20B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D2589191C1591BF00EA20B2 /* LaunchScreen.storyboard */; };
 		9D2589261C1591BF00EA20B2 /* ChuShiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2589251C1591BF00EA20B2 /* ChuShiTests.m */; };
@@ -26,7 +28,6 @@
 		9D2589601C15960400EA20B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D25895F1C15960400EA20B2 /* QuartzCore.framework */; };
 		9D2589621C15960A00EA20B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2589611C15960A00EA20B2 /* CoreGraphics.framework */; };
 		9D2589641C15961A00EA20B2 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2589631C15961A00EA20B2 /* iflyMSC.framework */; };
-		9D25896A1C1599DB00EA20B2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D2589661C1599DB00EA20B2 /* Info.plist */; };
 		9D25896B1C1599DB00EA20B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D2589671C1599DB00EA20B2 /* Assets.xcassets */; };
 		9D25896C1C1599DB00EA20B2 /* neizhi.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D2589681C1599DB00EA20B2 /* neizhi.plist */; };
 		9D25896F1C159A2D00EA20B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D25896E1C159A2D00EA20B2 /* AppDelegate.m */; };
@@ -49,8 +50,6 @@
 		9D2589AF1C159B9700EA20B2 /* MainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2589A91C159B9700EA20B2 /* MainCollectionViewCell.m */; };
 		9D2589B01C159B9700EA20B2 /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D2589AA1C159B9700EA20B2 /* MainCollectionViewCell.xib */; };
 		9D2589BB1C159BA600EA20B2 /* HideButtonTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2589B21C159BA600EA20B2 /* HideButtonTransition.m */; };
-		9D2589BC1C159BA600EA20B2 /* MagicBackMoveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2589B41C159BA600EA20B2 /* MagicBackMoveTransition.m */; };
-		9D2589BD1C159BA600EA20B2 /* MagicMoveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2589B61C159BA600EA20B2 /* MagicMoveTransition.m */; };
 		9D2589BE1C159BA600EA20B2 /* NavigationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2589B81C159BA600EA20B2 /* NavigationDelegate.m */; };
 		9D2589BF1C159BA600EA20B2 /* ShowButtonTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2589BA1C159BA600EA20B2 /* ShowButtonTransition.m */; };
 		9D2589C21C159BB000EA20B2 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2589C11C159BB000EA20B2 /* NetworkManager.m */; };
@@ -66,7 +65,7 @@
 		9D2589E71C159BD900EA20B2 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2589E41C159BD900EA20B2 /* BaseViewController.m */; };
 		9D2589E81C159BD900EA20B2 /* PickImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2589E61C159BD900EA20B2 /* PickImageViewController.m */; };
 		9D2589EC1C159D1900EA20B2 /* UIControl+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2589EB1C159D1900EA20B2 /* UIControl+YYAdd.m */; };
-		9DC7F7391C15D4E3003B598B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DC7F7381C15D4E3003B598B /* Media.xcassets */; };
+		9D26757C1C16D82900D55C7E /* UIDevice+machine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D26757B1C16D82900D55C7E /* UIDevice+machine.m */; };
 		E807D376C8EF63535EFB5F37 /* libPods-ChuShi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4B19280FB374380A06AACB /* libPods-ChuShi.a */; };
 /* End PBXBuildFile section */
 
@@ -90,7 +89,10 @@
 /* Begin PBXFileReference section */
 		5F4B19280FB374380A06AACB /* libPods-ChuShi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChuShi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		855995E0546BA5CD9F6C44B8 /* Pods-ChuShi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuShi.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChuShi/Pods-ChuShi.release.xcconfig"; sourceTree = "<group>"; };
-		9D2589081C1591BF00EA20B2 /* ChuShi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChuShi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D11ACB21C16A327009ADAAD /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
+		9D11ACB31C16A327009ADAAD /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
+		9D1E58F31C16E6E100516264 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		9D2589081C1591BF00EA20B2 /* 初识.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "初识.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D25890C1C1591BF00EA20B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9D25891A1C1591BF00EA20B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D2589211C1591BF00EA20B2 /* ChuShiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChuShiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,10 +156,6 @@
 		9D2589AA1C159B9700EA20B2 /* MainCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainCollectionViewCell.xib; sourceTree = "<group>"; };
 		9D2589B11C159BA600EA20B2 /* HideButtonTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideButtonTransition.h; sourceTree = "<group>"; };
 		9D2589B21C159BA600EA20B2 /* HideButtonTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HideButtonTransition.m; sourceTree = "<group>"; };
-		9D2589B31C159BA600EA20B2 /* MagicBackMoveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicBackMoveTransition.h; sourceTree = "<group>"; };
-		9D2589B41C159BA600EA20B2 /* MagicBackMoveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicBackMoveTransition.m; sourceTree = "<group>"; };
-		9D2589B51C159BA600EA20B2 /* MagicMoveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicMoveTransition.h; sourceTree = "<group>"; };
-		9D2589B61C159BA600EA20B2 /* MagicMoveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicMoveTransition.m; sourceTree = "<group>"; };
 		9D2589B71C159BA600EA20B2 /* NavigationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationDelegate.h; sourceTree = "<group>"; };
 		9D2589B81C159BA600EA20B2 /* NavigationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationDelegate.m; sourceTree = "<group>"; };
 		9D2589B91C159BA600EA20B2 /* ShowButtonTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowButtonTransition.h; sourceTree = "<group>"; };
@@ -191,7 +189,9 @@
 		9D2589E91C159BF000EA20B2 /* Definition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Definition.h; sourceTree = "<group>"; };
 		9D2589EA1C159D1900EA20B2 /* UIControl+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+YYAdd.h"; sourceTree = "<group>"; };
 		9D2589EB1C159D1900EA20B2 /* UIControl+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+YYAdd.m"; sourceTree = "<group>"; };
-		9DC7F7381C15D4E3003B598B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		9D2675781C16B7E500D55C7E /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		9D26757A1C16D82900D55C7E /* UIDevice+machine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+machine.h"; sourceTree = "<group>"; };
+		9D26757B1C16D82900D55C7E /* UIDevice+machine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+machine.m"; sourceTree = "<group>"; };
 		A27C7AE381F9A7732E7B3A7A /* Pods-ChuShi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChuShi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChuShi/Pods-ChuShi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -251,7 +251,7 @@
 		9D2589091C1591BF00EA20B2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9D2589081C1591BF00EA20B2 /* ChuShi.app */,
+				9D2589081C1591BF00EA20B2 /* 初识.app */,
 				9D2589211C1591BF00EA20B2 /* ChuShiTests.xctest */,
 				9D25892C1C1591BF00EA20B2 /* ChuShiUITests.xctest */,
 			);
@@ -266,7 +266,7 @@
 				9D25897D1C159B6A00EA20B2 /* Main.storyboard */,
 				9D2589661C1599DB00EA20B2 /* Info.plist */,
 				9D2589671C1599DB00EA20B2 /* Assets.xcassets */,
-				9DC7F7381C15D4E3003B598B /* Media.xcassets */,
+				9D1E58F31C16E6E100516264 /* Media.xcassets */,
 				9D2589681C1599DB00EA20B2 /* neizhi.plist */,
 				9D25897C1C159A7900EA20B2 /* View */,
 				9D25897B1C159A7800EA20B2 /* ViewController */,
@@ -349,10 +349,6 @@
 			children = (
 				9D2589B11C159BA600EA20B2 /* HideButtonTransition.h */,
 				9D2589B21C159BA600EA20B2 /* HideButtonTransition.m */,
-				9D2589B31C159BA600EA20B2 /* MagicBackMoveTransition.h */,
-				9D2589B41C159BA600EA20B2 /* MagicBackMoveTransition.m */,
-				9D2589B51C159BA600EA20B2 /* MagicMoveTransition.h */,
-				9D2589B61C159BA600EA20B2 /* MagicMoveTransition.m */,
 				9D2589B71C159BA600EA20B2 /* NavigationDelegate.h */,
 				9D2589B81C159BA600EA20B2 /* NavigationDelegate.m */,
 				9D2589B91C159BA600EA20B2 /* ShowButtonTransition.h */,
@@ -373,6 +369,10 @@
 				9D2589DC1C159BD100EA20B2 /* UIImage+Resize.m */,
 				9D2589DD1C159BD100EA20B2 /* UIView+BGTouchView.h */,
 				9D2589DE1C159BD100EA20B2 /* UIView+BGTouchView.m */,
+				9D11ACB21C16A327009ADAAD /* UIImage+fixOrientation.h */,
+				9D11ACB31C16A327009ADAAD /* UIImage+fixOrientation.m */,
+				9D26757A1C16D82900D55C7E /* UIDevice+machine.h */,
+				9D26757B1C16D82900D55C7E /* UIDevice+machine.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -463,15 +463,15 @@
 		9D25897C1C159A7900EA20B2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9D2589A21C159B9700EA20B2 /* CardCollectionViewCell.xib */,
-				9D2589A31C159B9700EA20B2 /* CardCollectionViewCell.h */,
-				9D2589A41C159B9700EA20B2 /* CardCollectionViewCell.m */,
-				9D2589A51C159B9700EA20B2 /* CardListCollectionViewCell.h */,
-				9D2589A61C159B9700EA20B2 /* CardListCollectionViewCell.m */,
-				9D2589A71C159B9700EA20B2 /* CardListCollectionViewCell.xib */,
 				9D2589A81C159B9700EA20B2 /* MainCollectionViewCell.h */,
 				9D2589A91C159B9700EA20B2 /* MainCollectionViewCell.m */,
 				9D2589AA1C159B9700EA20B2 /* MainCollectionViewCell.xib */,
+				9D2589A51C159B9700EA20B2 /* CardListCollectionViewCell.h */,
+				9D2589A61C159B9700EA20B2 /* CardListCollectionViewCell.m */,
+				9D2589A71C159B9700EA20B2 /* CardListCollectionViewCell.xib */,
+				9D2589A31C159B9700EA20B2 /* CardCollectionViewCell.h */,
+				9D2589A41C159B9700EA20B2 /* CardCollectionViewCell.m */,
+				9D2589A21C159B9700EA20B2 /* CardCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -488,6 +488,7 @@
 		F730D2D6A9CF2C00F4163E2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9D2675781C16B7E500D55C7E /* Reveal.framework */,
 				9D2589631C15961A00EA20B2 /* iflyMSC.framework */,
 				9D2589611C15960A00EA20B2 /* CoreGraphics.framework */,
 				9D25895F1C15960400EA20B2 /* QuartzCore.framework */,
@@ -528,7 +529,7 @@
 			);
 			name = ChuShi;
 			productName = ChuShi;
-			productReference = 9D2589081C1591BF00EA20B2 /* ChuShi.app */;
+			productReference = 9D2589081C1591BF00EA20B2 /* 初识.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9D2589201C1591BF00EA20B2 /* ChuShiTests */ = {
@@ -615,13 +616,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DC7F7391C15D4E3003B598B /* Media.xcassets in Resources */,
 				9D25896C1C1599DB00EA20B2 /* neizhi.plist in Resources */,
 				9D25897F1C159B6A00EA20B2 /* Main.storyboard in Resources */,
+				9D1E58F41C16E6E100516264 /* Media.xcassets in Resources */,
 				9D25891B1C1591BF00EA20B2 /* LaunchScreen.storyboard in Resources */,
 				9D25896B1C1599DB00EA20B2 /* Assets.xcassets in Resources */,
 				9D2589AB1C159B9700EA20B2 /* CardCollectionViewCell.xib in Resources */,
-				9D25896A1C1599DB00EA20B2 /* Info.plist in Resources */,
 				9D2589AE1C159B9700EA20B2 /* CardListCollectionViewCell.xib in Resources */,
 				9D2589B01C159B9700EA20B2 /* MainCollectionViewCell.xib in Resources */,
 			);
@@ -703,6 +703,7 @@
 				9D25898F1C159B7E00EA20B2 /* TXQcloudFrSDK.m in Sources */,
 				9D2589CC1C159BB800EA20B2 /* DataBase.m in Sources */,
 				9D25896F1C159A2D00EA20B2 /* AppDelegate.m in Sources */,
+				9D26757C1C16D82900D55C7E /* UIDevice+machine.m in Sources */,
 				9D2589861C159B7600EA20B2 /* YTTagModel.m in Sources */,
 				9D2589A11C159B9000EA20B2 /* MainViewController.m in Sources */,
 				9D2589911C159B7E00EA20B2 /* NSData+Base64.m in Sources */,
@@ -711,18 +712,17 @@
 				9D2589BB1C159BA600EA20B2 /* HideButtonTransition.m in Sources */,
 				9D2589E71C159BD900EA20B2 /* BaseViewController.m in Sources */,
 				9D2589851C159B7600EA20B2 /* YTOperations.m in Sources */,
+				9D11ACB41C16A327009ADAAD /* UIImage+fixOrientation.m in Sources */,
 				9D25890D1C1591BF00EA20B2 /* main.m in Sources */,
 				9D2589A01C159B9000EA20B2 /* CardViewController.m in Sources */,
 				9D2589E11C159BD100EA20B2 /* UIImage+Resize.m in Sources */,
 				9D2589901C159B7E00EA20B2 /* Auth.m in Sources */,
 				9D2589EC1C159D1900EA20B2 /* UIControl+YYAdd.m in Sources */,
-				9D2589BC1C159BA600EA20B2 /* MagicBackMoveTransition.m in Sources */,
 				9D2589DF1C159BD100EA20B2 /* NSString+Process.m in Sources */,
 				9D2589CD1C159BB800EA20B2 /* JSONHelper.m in Sources */,
 				9D2589E81C159BD900EA20B2 /* PickImageViewController.m in Sources */,
 				9D2589C21C159BB000EA20B2 /* NetworkManager.m in Sources */,
 				9D25899F1C159B9000EA20B2 /* CardListViewController.m in Sources */,
-				9D2589BD1C159BA600EA20B2 /* MagicMoveTransition.m in Sources */,
 				9D2589CB1C159BB800EA20B2 /* Card.m in Sources */,
 				9D2589E21C159BD100EA20B2 /* UIView+BGTouchView.m in Sources */,
 				9D2589AC1C159B9700EA20B2 /* CardCollectionViewCell.m in Sources */,
@@ -879,9 +879,27 @@
 				GCC_PREFIX_HEADER = "ChuShi/Head/WordRecognition-Prefix.pch";
 				INFOPLIST_FILE = ChuShi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"FMDB\"",
+					"-l\"Masonry\"",
+					"-l\"SVProgressHUD\"",
+					"-l\"sqlite3\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"UIKit\"",
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uniquestudio.ChuShi;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = "初识";
+				PROVISIONING_PROFILE = "59549c0e-0904-4826-8475-1cb5000a5e34";
 			};
 			name = Debug;
 		};
@@ -900,9 +918,27 @@
 				GCC_PREFIX_HEADER = "ChuShi/Head/WordRecognition-Prefix.pch";
 				INFOPLIST_FILE = ChuShi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"FMDB\"",
+					"-l\"Masonry\"",
+					"-l\"SVProgressHUD\"",
+					"-l\"sqlite3\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"UIKit\"",
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uniquestudio.ChuShi;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = "初识";
+				PROVISIONING_PROFILE = "59549c0e-0904-4826-8475-1cb5000a5e34";
 			};
 			name = Release;
 		};

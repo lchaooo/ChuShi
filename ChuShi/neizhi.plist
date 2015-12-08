@@ -38,6 +38,14 @@
 		</dict>
 		<dict>
 			<key>imageCount</key>
+			<integer>3</integer>
+			<key>english</key>
+			<string>potato</string>
+			<key>chinese</key>
+			<string>土豆</string>
+		</dict>
+		<dict>
+			<key>imageCount</key>
 			<integer>5</integer>
 			<key>english</key>
 			<string>carrot</string>

@@ -26,15 +26,17 @@
 
 @implementation DataBase
 
-static NSString *const CREATE_TABLE_SQL = @"CREATE TABLE IF NOT EXISTS mine (chinese TEXT,english TEXT,image BLOB,identifier INTEGER)";
+static NSString *const CREATE_TABLE_SQL = @"CREATE TABLE IF NOT EXISTS mine (chinese TEXT,english TEXT,image BLOB,identifier INTEGER primary key autoincrement)";
 
-static NSString *const UPDATE_SQL = @"REPLACE INTO %@ (chinese, english, image, identifier) values (?, ?, ?, %d)";
+static NSString *const UPDATE_SQL_NOID = @"REPLACE INTO %@ (chinese, english, image, identifier) values (?, ?, ?, NULL)";
+
+static NSString *const UPDATE_SQL = @"REPLACE INTO %@ (chinese, english, image, identifier) values (?, ?, ?, %ld)";
 
 static NSString *const SELECT_ALL_SQL = @"SELECT * from %@";
 
 static NSString *const CLEAR_ALL_SQL = @"DELETE from %@";
 
-static NSString *const DELETE_ITEM_SQL = @"DELETE from %@ where identifier = %d";
+static NSString *const DELETE_ITEM_SQL = @"DELETE from %@ where identifier = %ld";
 
 - (BOOL)checkTableName:(NSString *)tableName {
     if (tableName == nil || tableName.length == 0 || [tableName rangeOfString:@" "].location != NSNotFound) {
@@ -58,7 +60,6 @@ static NSString *const DELETE_ITEM_SQL = @"DELETE from %@ where identifier = %d"
     self = [super init];
     if (self) {
         [self loadDataBase];
-        self.identifier = 100;
     }
     return self;
 }
@@ -91,7 +92,8 @@ static NSString *const DELETE_ITEM_SQL = @"DELETE from %@ where identifier = %d"
             card.english = [rs stringForColumn:ENGLISH];
             card.images = @[[UIImage imageWithData:[rs dataForColumn:IMAGE]]];
             card.imageCounts = 1;
-            card.identifier = [rs intForColumn:IDENTIFIER];
+            card.identifier = [rs longForColumn:IDENTIFIER];
+            NSLog(@"%ld",[rs longForColumn:IDENTIFIER]);
             [result addObject:card];
         }
     }];
@@ -116,9 +118,11 @@ static NSString *const DELETE_ITEM_SQL = @"DELETE from %@ where identifier = %d"
         return;
     }
     NSLog(@"%@",card.description);
-    NSString *sql = [NSString stringWithFormat:DELETE_ITEM_SQL, tableName, card.identifier];
+    NSString *sql = [NSString stringWithFormat:DELETE_ITEM_SQL, tableName, (long)card.identifier];
+    __block BOOL result;
     [self.dbQueue inDatabase:^(FMDatabase *db) {
-        [db executeUpdate:sql, card.identifier];
+        result =  [db executeUpdate:sql, card.identifier];
+        NSAssert(result == YES, @"");
     }];
     return;
 }
@@ -127,10 +131,14 @@ static NSString *const DELETE_ITEM_SQL = @"DELETE from %@ where identifier = %d"
     if ([self checkTableName:tableName] == NO) {
         return;
     }
-    NSString *sql = [NSString stringWithFormat:UPDATE_SQL, tableName, self.identifier];
-    self.identifier += 1;
+    NSString *sql = [NSString stringWithFormat:UPDATE_SQL, tableName, card.identifier];
+    NSString *noIDsql = [NSString stringWithFormat:UPDATE_SQL_NOID, tableName];
     [self.dbQueue inDatabase:^(FMDatabase *db) {
-        [db executeUpdate:sql, card.chinese, card.english, [self dataFromImage:card.images[0]]];
+        if (card.identifier == NSIntegerMin) {
+            [db executeUpdate:noIDsql, card.chinese, card.english, [self dataFromImage:card.images[0]]];
+        } else {
+            [db executeUpdate:sql, card.chinese, card.english, [self dataFromImage:card.images[0]]];
+        }
     }];
     return;
 }

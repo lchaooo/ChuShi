@@ -39,6 +39,8 @@
     [self.speechSynthesizer setParameter:@" xiaoyan " forKey: [IFlySpeechConstant VOICE_NAME]];
     //保存合成文件名,如不再需要,设置设置为nil或者为空表示取消,默认目录位于 library/cache下
     [self.speechSynthesizer setParameter:@" tts.pcm" forKey: [IFlySpeechConstant TTS_AUDIO_PATH]];
+    [self.speechSynthesizer setParameter:@"10" forKey:[IFlySpeechConstant SPEED]];
+    [self.speechSynthesizer setParameter:@"30" forKey:[IFlySpeechConstant PITCH]];
 }
 
 

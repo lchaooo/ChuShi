@@ -7,6 +7,7 @@
 //
 
 #import "PickImageViewController.h"
+#import "UIImage+fixOrientation.h"
 
 @interface PickImageViewController ()
 
@@ -79,7 +80,7 @@
     UIImage *editedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     
     if (editedImage) {
-        self.originalImage = editedImage;
+        self.originalImage = [[editedImage fixOrientation] fixSize];
     }
 }
 
