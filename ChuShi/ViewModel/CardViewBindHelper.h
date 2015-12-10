@@ -12,6 +12,6 @@
 
 @interface CardViewBindHelper : NSObject
 
-- (void)bindCardCell:(CardCollectionViewCell *)view withCard:(Card *)card index:(NSNumber *)index;
+- (void)bindCardCell:(CardCollectionViewCell *)view withCard:(Card *)card index:(NSNumber *)index num:(NSNumber *)num;
 
 @end

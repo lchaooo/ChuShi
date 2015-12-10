@@ -9,10 +9,8 @@
 #import "AppDelegate.h"
 #import <iflyMSC/iflyMSC.h>
 #import "Definition.h"
-#import "JSONHelper.h"
-#import "Card.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <AVAudioSessionDelegate>
 
 @end
 
@@ -51,6 +49,11 @@
     }
     return storyboard;
 }
+
+/*
+ 4.imageview 用户自己选取
+ 5.audio
+*/
 
 
 @end

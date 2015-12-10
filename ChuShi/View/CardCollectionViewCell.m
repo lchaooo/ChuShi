@@ -7,9 +7,7 @@
 //
 
 #import "CardCollectionViewCell.h"
-
-#define SCROLLVIEW_WIDTH self.imageScrollView.frame.size.width
-#define SCROLLVIEW_HEIGHT self.imageScrollView.frame.size.height
+#import <AVFoundation/AVPlayer.h>
 
 @interface CardCollectionViewCell() <UIScrollViewDelegate>
 
@@ -18,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *visualEffectView;
 @property (nonatomic, assign) NSUInteger contentOffSetY;
 @property (nonatomic, assign) CGPoint lastContentOffset;
+@property (nonatomic, strong) AVPlayer *player;
 
 //@property (nonatomic, assign) NSUInteger currentNum;
 
@@ -29,6 +28,7 @@
     [super awakeFromNib];
     [self setUpSubviews];
     self.lastContentOffset = CGPointMake(0, 0);
+    self.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 #pragma mark UIScrollViewDelegate
@@ -37,20 +37,21 @@
         [self.delegate imageBrowserDidScroll:self];
     }
     self.lastContentOffset = scrollView.contentOffset;
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
     self.contentOffSetY = scrollView.contentOffset.y;
-    [self performSelector:@selector(scrollViewDidEndScrollingAnimation:) withObject:nil afterDelay:0.1];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self performSelector:@selector(scrollViewDidEndScrollingAnimation:) withObject:nil afterDelay:0.15];
 }
 
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self.delegate imageBrowserDidEndScroll:self.contentOffSetY/SCROLLVIEW_HEIGHT cell:self];
+    [self.delegate imageBrowserDidEndScroll:self.contentOffSetY/SCREEN_HEIGHT cell:self];
 }
 
 #pragma mark custom
 - (void)setUpSubviews {
     self.contentOffSetY = 0;
+    self.indexPath = 0;
     
     self.imageScrollView.delegate = self;
     
@@ -61,6 +62,7 @@
     
     self.imageScrollView.backgroundColor = [UIColor clearColor];
     self.imageScrollView.scrollEnabled = YES;
+    self.imageScrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     
     UITapGestureRecognizer *chineseRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chinesePlayDidSelected)];
     [self.chinesePlay setUserInteractionEnabled:YES];
@@ -87,14 +89,14 @@
 #pragma mark getters and setters
 - (void)setCount:(NSUInteger)count {
     _count = count;
-    self.imageScrollView.contentSize = CGSizeMake(SCROLLVIEW_WIDTH, SCROLLVIEW_HEIGHT * count);
+    self.imageScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT * count);
    // self.currentNum = 1;
 }
 
 - (void)setImageArray:(NSArray *)imageArray {
     _imageArray = imageArray;
     for (int i = 0; i < _count; i++) {
-        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * i, SCROLLVIEW_WIDTH, SCROLLVIEW_HEIGHT)];
+        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * i, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [image setImage:imageArray[i]];
         [self.imageScrollView addSubview:image];
     }

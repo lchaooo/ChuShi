@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *englishLabel;
 @property (nonatomic, assign) NSUInteger count;
 @property (nonatomic, strong) NSArray *imageArray;
+@property (nonatomic, assign) NSUInteger indexPath;
 @property (nonatomic, weak) id<CardCollectionViewCellDelegate> delegate;
 
 @end

@@ -14,7 +14,8 @@
 {
     self = [super init];
     if (self) {
-        self.itemSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
+        self.itemSize = SCREEN_SIZE;
+
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         //  确定了缩进，此处为上方、下方各缩进200
         //self.sectionInset = UIEdgeInsetsMake(ITEM_SIZE, ITEM_SIZE/2, ITEM_SIZE, ITEM_SIZE/2);

@@ -204,6 +204,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D2589501C1593A000EA20B2 /* AVFoundation.framework in Frameworks */,
 				9D2589621C15960A00EA20B2 /* CoreGraphics.framework in Frameworks */,
 				9D2589601C15960400EA20B2 /* QuartzCore.framework in Frameworks */,
 				9D25895E1C1595FC00EA20B2 /* AddressBook.framework in Frameworks */,
@@ -214,7 +215,6 @@
 				9D2589561C1595D800EA20B2 /* CoreTelephony.framework in Frameworks */,
 				9D2589541C1595CD00EA20B2 /* Foundation.framework in Frameworks */,
 				9D2589521C1595C400EA20B2 /* SystemConfiguration.framework in Frameworks */,
-				9D2589501C1593A000EA20B2 /* AVFoundation.framework in Frameworks */,
 				9D25894B1C15939500EA20B2 /* libz.1.1.3.tbd in Frameworks */,
 				9D25894C1C15939500EA20B2 /* libz.1.2.5.tbd in Frameworks */,
 				9D25894D1C15939500EA20B2 /* libz.1.tbd in Frameworks */,
@@ -886,6 +886,7 @@
 				);
 				GCC_PREFIX_HEADER = "ChuShi/Head/WordRecognition-Prefix.pch";
 				INFOPLIST_FILE = ChuShi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -907,7 +908,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uniquestudio.ChuShi;
 				PRODUCT_NAME = "初识";
-				PROVISIONING_PROFILE = "59549c0e-0904-4826-8475-1cb5000a5e34";
+				PROVISIONING_PROFILE = "a3d72314-39eb-4423-9b3e-6011240218d6";
 			};
 			name = Debug;
 		};
@@ -925,6 +926,7 @@
 				);
 				GCC_PREFIX_HEADER = "ChuShi/Head/WordRecognition-Prefix.pch";
 				INFOPLIST_FILE = ChuShi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -946,7 +948,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uniquestudio.ChuShi;
 				PRODUCT_NAME = "初识";
-				PROVISIONING_PROFILE = "59549c0e-0904-4826-8475-1cb5000a5e34";
+				PROVISIONING_PROFILE = "a3d72314-39eb-4423-9b3e-6011240218d6";
 			};
 			name = Release;
 		};

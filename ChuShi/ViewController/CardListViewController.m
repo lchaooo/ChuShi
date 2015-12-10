@@ -14,7 +14,6 @@
 #import "CardListCollectionViewCell.h"
 #import "CardViewController.h"
 
-
 @interface CardListViewController () <UICollectionViewDelegate, UICollectionViewDataSource, CardListCollectionViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *cardListCollectionView;

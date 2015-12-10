@@ -8,12 +8,9 @@
 
 #import "CardViewBindHelper.h"
 
-#define IMAGESCROLLVIEW_WIDTH view.imageScrollView.frame.size.width
-#define IMAGESCROLLVIEW_HEIGHT view.imageScrollView.frame.size.height
-
 @implementation CardViewBindHelper
 
-- (void)bindCardCell:(CardCollectionViewCell *)view withCard:(Card *)card index:(NSNumber *)index {
+- (void)bindCardCell:(CardCollectionViewCell *)view withCard:(Card *)card index:(NSNumber *)index num:(NSNumber *)num{
     view.chineseLabel.text = card.chinese;
     view.englishLabel.text = card.english;
     view.pinyinLabel.text = card.pinyin;
@@ -23,8 +20,9 @@
     }
     view.count = card.imageCounts;
     view.imageArray = card.images;
+    view.indexPath = [num integerValue];
     [view layoutIfNeeded];
-    [view.imageScrollView scrollRectToVisible:CGRectMake(0, [index intValue] * IMAGESCROLLVIEW_HEIGHT, IMAGESCROLLVIEW_WIDTH, IMAGESCROLLVIEW_HEIGHT) animated:NO];
+    [view.imageScrollView scrollRectToVisible:CGRectMake(0, [index intValue] * SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT) animated:NO];
 }
 
 @end

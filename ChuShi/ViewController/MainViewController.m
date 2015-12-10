@@ -15,12 +15,16 @@
 #import "Card.h"
 #import "NetworkManager.h"
 #import "MainCollectionViewCell.h"
+#import <AVFoundation/AVAudioSession.h>
+#import <AVFoundation/AVAudioPlayer.h>
 
-@interface MainViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MainViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, AVAudioPlayerDelegate
+>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *mainCollectionView;
 @property (nonatomic, strong) NSArray *identifierArray;
 @property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, strong) AVAudioPlayer *player;
 
 @end
 
@@ -28,15 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.navigationController.navigationBarHidden = YES;
-    [self.choosePhotoButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
-        [self chooseImage];
-    }];
-    MainLayout *layout = [[MainLayout alloc] init];
-    self.mainCollectionView.collectionViewLayout = layout;
-    [self.mainCollectionView registerNib:[UINib nibWithNibName:@"MainCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"mainCell"];
-
+    [self setUpSubviews];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -109,6 +105,16 @@
 - (void)dismissProcessHud {
     [SVProgressHUD dismiss];
     self.view.userInteractionEnabled = YES;
+}
+
+- (void)setUpSubviews {
+    self.navigationController.navigationBarHidden = YES;
+    [self.choosePhotoButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
+        [self chooseImage];
+    }];
+    MainLayout *layout = [[MainLayout alloc] init];
+    self.mainCollectionView.collectionViewLayout = layout;
+    [self.mainCollectionView registerNib:[UINib nibWithNibName:@"MainCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"mainCell"];
 }
 
 #pragma mark getters and setters 

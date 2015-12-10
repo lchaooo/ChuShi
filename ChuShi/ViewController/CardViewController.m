@@ -22,13 +22,14 @@
 #import "YTTagModel.h"
 
 #define IS_CH_SYMBOL(chr) ((int)(chr)>127)
+#define MAX_TEXT 6
 
 typedef NS_ENUM(NSUInteger, SaveButtonType) {
     SaveButtonTypeDidSave = 0,
     SaveButtonTypeNotSave,
 };
 
-@interface CardViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, CardCollectionViewCellDelegate, IFlySpeechSynthesizerDelegate, UIScrollViewDelegate>
+@interface CardViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, CardCollectionViewCellDelegate, IFlySpeechSynthesizerDelegate, UIScrollViewDelegate, UITextFieldDelegate>
 
 
 @property (nonatomic, strong) CardViewBindHelper *bindHelper;
@@ -61,7 +62,7 @@ typedef NS_ENUM(NSUInteger, SaveButtonType) {
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
     CardCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"cardCell" forIndexPath:indexPath];
-    [self.bindHelper bindCardCell:cell withCard:self.cardArray[indexPath.row] index:[self.indexArray objectAtIndex:indexPath.row]];
+    [self.bindHelper bindCardCell:cell withCard:self.cardArray[indexPath.row] index:[self.indexArray objectAtIndex:indexPath.row] num:[NSNumber numberWithInteger:indexPath.row]];
     cell.delegate = self;
     return cell;
 }
@@ -70,6 +71,7 @@ typedef NS_ENUM(NSUInteger, SaveButtonType) {
     return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
 }
 
+#pragma mark UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     for (CardCollectionViewCell *cell in self.cardCollectionView.visibleCells) {
@@ -119,13 +121,28 @@ typedef NS_ENUM(NSUInteger, SaveButtonType) {
 }
 
 - (void)imageBrowserDidEndScroll:(NSUInteger)index cell:(CardCollectionViewCell *)cell {
-    NSUInteger rowNum = [self.cardCollectionView indexPathForCell:cell].row;
-    [self.indexArray setObject:@(index) atIndexedSubscript:rowNum];
+    [self.indexArray setObject:@(index) atIndexedSubscript:cell.indexPath];
     self.cardCollectionView.scrollEnabled = YES;
 }
 
 - (void)imageBrowserDidScroll:(CardCollectionViewCell *)cell {
     self.cardCollectionView.scrollEnabled = NO;
+}
+
+#pragma mark UITextFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    if ([string isEqualToString:@""])
+    {
+        return YES;
+    }
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSUInteger maxLength = MAX_TEXT;
+    if ([toBeString length] > maxLength) {
+        textField.text = [toBeString substringToIndex:maxLength];
+        return NO;
+    }
+    return YES;
 }
 
 #pragma override
@@ -168,6 +185,9 @@ typedef NS_ENUM(NSUInteger, SaveButtonType) {
 - (void)setUpSubviews {
     self.navigationController.navigationBar.hidden = YES;
     self.cardCollectionView.scrollEnabled = YES;
+    CardLayout *layout = [[CardLayout alloc] init];
+    self.cardCollectionView.collectionViewLayout = layout;
+    [self.cardCollectionView reloadData];
     
     [self.backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
         [self.navigationController popViewControllerAnimated:YES];
@@ -177,8 +197,10 @@ typedef NS_ENUM(NSUInteger, SaveButtonType) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"卡片有误？编辑您的卡片" preferredStyle:UIAlertControllerStyleAlert];
         [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
             textField.placeholder = @"请输入中文";
+            textField.delegate = self;
             textField.text = [(Card *)[self.cardArray objectAtIndex:self.indexToDelete] chinese];
         }];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewEditChanged:) name:UITextFieldTextDidChangeNotification object:alertController.textFields[0]];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSMutableArray *textArray = [NSMutableArray array];
             for (UITextField *textField in alertController.textFields) {
@@ -239,6 +261,10 @@ typedef NS_ENUM(NSUInteger, SaveButtonType) {
         } else if (self.buttonType == SaveButtonTypeNotSave) {
             [[DataBase sharedInstance] insertDataIntoTable:@"mine" card:[self.cardArray objectAtIndex:self.indexToDelete]];
             self.buttonType = SaveButtonTypeDidSave;
+            if (self.status == CardViewStatusCustom) {
+                self.status = CardViewStatusEdit;
+                self.cardArray = [NSArray arrayWithObjects:[[[DataBase sharedInstance] selectAllDataFromTable:@"mine"] lastObject], nil];
+            }
         }
     }];
     
@@ -251,12 +277,10 @@ typedef NS_ENUM(NSUInteger, SaveButtonType) {
     } else {
         [self.cardCollectionView registerNib:[UINib nibWithNibName:@"CardCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cardCell"];
     }
-    CardLayout *layout = [[CardLayout alloc] init];
-    self.cardCollectionView.collectionViewLayout = layout;
     
     self.indexArray = [NSMutableArray array];
     for (int i = 0; i < self.cardArray.count; i++) {
-        [self.indexArray addObject:@0];
+        [self.indexArray addObject:[NSNumber numberWithLong:0]];
     }
     
     if (self.status == CardViewStatusNormal) {
@@ -275,6 +299,29 @@ typedef NS_ENUM(NSUInteger, SaveButtonType) {
         self.buttonType = SaveButtonTypeDidSave;
     }
 }
+
+-(void)textViewEditChanged:(NSNotification *)obj{
+    UITextField *textField = (UITextField *)obj.object;
+    NSString *toBeString = textField.text;
+    NSString *lang = [[UITextInputMode currentInputMode] primaryLanguage];
+    NSUInteger maxLength = MAX_TEXT;
+    if ([lang isEqualToString:@"zh-Hans"]) {
+        UITextRange *selectedRange = [textField markedTextRange];
+        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+        if (!position) {
+            if (toBeString.length > maxLength) {
+                textField.text = [toBeString substringToIndex:maxLength];
+            }
+        }
+        else{
+        }
+    } else {
+        if (toBeString.length > maxLength) {
+            textField.text = [toBeString substringToIndex:maxLength];
+        }
+    }
+}
+
 
 - (void)dismissProcessHud {
     [SVProgressHUD dismiss];
